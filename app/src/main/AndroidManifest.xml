@@ -18,7 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Clock.ClockActivity" />
-        <activity android:name=".basic.PaintExerciseActivity"/>
+        <activity android:name=".basic.paint.PaintExerciseActivity" />
+        <activity android:name=".basic.path.PathEcerciseActivity" />
+        <activity android:name=".basic.shader.ShaderExercixeActivity"></activity>
     </application>
 
 </manifest>

@@ -8,7 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.lwd.customview.Clock.ClockActivity;
-import com.lwd.customview.basic.PaintExerciseActivity;
+import com.lwd.customview.basic.paint.PaintExerciseActivity;
+import com.lwd.customview.basic.path.PathEcerciseActivity;
+import com.lwd.customview.basic.shader.ShaderExercixeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         menuList = new ArrayList<>();
         menuList.add("Paint基础教程 ");
+        menuList.add("Path高级用法 ");
         menuList.add("实现时钟效果 ");
+        menuList.add("Shader图像渲染 ");
         menuAdapter = new MenuAdapter(this,menuList);
         lvMuenu.setAdapter(menuAdapter);
 
@@ -51,7 +55,13 @@ public class MainActivity extends AppCompatActivity {
                         intent = new Intent(MainActivity.this, PaintExerciseActivity.class);
                         break;
                     case 1:
+                        intent = new Intent(MainActivity.this, PathEcerciseActivity.class);
+                        break;
+                    case 2:
                         intent = new Intent(MainActivity.this, ClockActivity.class);
+                        break;
+                    case 3:
+                        intent = new Intent(MainActivity.this, ShaderExercixeActivity.class);
                         break;
                 }
                 startActivity(intent);
