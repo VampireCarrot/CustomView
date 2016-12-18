@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.lwd.customview.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PathEcerciseActivity extends AppCompatActivity {
@@ -18,7 +17,6 @@ public class PathEcerciseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parh_ecercise);
-        ButterKnife.bind(this);
     }
 
     @Override
@@ -30,7 +28,6 @@ public class PathEcerciseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        pvPath.clearAnim();
     }
 
     @OnClick(R.id.pv_path)

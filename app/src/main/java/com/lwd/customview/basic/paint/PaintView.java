@@ -11,10 +11,6 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.mcxtzhang.pathanimlib.PathAnimHelper;
-import com.mcxtzhang.pathanimlib.res.StoreHousePath;
-import com.mcxtzhang.pathanimlib.utils.PathParserUtils;
-
 
 /**
  * User: LWD
@@ -25,12 +21,6 @@ import com.mcxtzhang.pathanimlib.utils.PathParserUtils;
 
 public class PaintView extends View {
 
-    protected Path mSourcePath;//需要做动画的源Path
-    protected Path mAnimPath;//用于绘制动画的Path
-    protected int mColorBg = Color.GRAY;//背景色
-    protected int mColorFg = Color.RED;//前景色 填充色
-    protected PathAnimHelper mPathAnimHelper;//Path动画工具类
-    protected int mPaddingLeft, mPaddingTop;
     public PaintView(Context context) {
         super(context);
     }
@@ -193,66 +183,5 @@ public class PaintView extends View {
         canvas.drawText("绘制椭圆", 300, 250, paint);
         canvas.drawText("绘制三角形", 300, 320, paint);
         canvas.drawText("绘制梯形", 300, 390, paint);
-
-
-        Paint mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.STROKE);
-        //动画路径只要初始化即可
-        mAnimPath = new Path();
-        mSourcePath = PathParserUtils.getPathFromArrayFloatList(StoreHousePath.getPath("HELLO", 1.1f, 16));
-        mPathAnimHelper = getInitAnimHeper(this,mSourcePath,mAnimPath);
-        mPathAnimHelper.setInfinite(true);
-        mPathAnimHelper.setAnimTime(1500);
-
-        //平移
-        canvas.translate(mPaddingLeft, mPaddingTop);
-
-        //先绘制底，
-        mPaint.setColor(mColorBg);
-        canvas.drawPath(mSourcePath, mPaint);
-
-        //再绘制前景，mAnimPath不断变化，不断重绘View的话，就会有动画效果。
-        mPaint.setColor(mColorFg);
-        canvas.drawPath(mAnimPath, mPaint);
-        startAnim();
-
-
     }
-
-
-    /**
-     * 子类可通过重写这个方法，返回自定义的AnimHelper
-     *
-     * @return
-     */
-    protected PathAnimHelper getInitAnimHeper(View view, Path sourcePath, Path animPath) {
-        return new PathAnimHelper(this, mSourcePath, mAnimPath);
-    }
-
-    /**
-     * 执行循环动画
-     */
-    public void startAnim() {
-        mPathAnimHelper.startAnim();
-    }
-
-    /**
-     * 停止动画
-     */
-    public void stopAnim() {
-        mPathAnimHelper.stopAnim();
-    }
-
-    /**
-     * 清除并停止动画
-     */
-    public void clearAnim() {
-        stopAnim();
-        mAnimPath.reset();
-        mAnimPath.lineTo(0, 0);
-        invalidate();
-    }
-
-
 }
