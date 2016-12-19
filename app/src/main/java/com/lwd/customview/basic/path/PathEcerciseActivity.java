@@ -12,11 +12,12 @@ public class PathEcerciseActivity extends AppCompatActivity {
 
     @Bind(R.id.pv_path)
     PathView pvPath;
-
+    AJMDPath ajmdPath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parh_ecercise);
+        ajmdPath = (AJMDPath) findViewById(R.id.ahmdp);
     }
 
     @Override
