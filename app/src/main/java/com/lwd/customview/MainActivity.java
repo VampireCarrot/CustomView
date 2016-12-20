@@ -8,7 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.lwd.customview.Clock.ClockActivity;
+import com.lwd.customview.basic.GameOne.GameOneActivity;
 import com.lwd.customview.basic.animpath.PathAnimActivity;
+import com.lwd.customview.basic.bezierPath.BezierActivity;
 import com.lwd.customview.basic.paint.PaintExerciseActivity;
 import com.lwd.customview.basic.path.PathEcerciseActivity;
 import com.lwd.customview.basic.shader.ShaderExercixeActivity;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         menuList.add("实现时钟效果 ");
         menuList.add("Shader图像渲染 ");
         menuList.add("Path动态效果 ");
+        menuList.add("贝塞尔曲线效果 ");
+        menuList.add("用View绘制的小游戏 ");
         menuAdapter = new MenuAdapter(this,menuList);
         lvMuenu.setAdapter(menuAdapter);
 
@@ -67,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         intent = new Intent(MainActivity.this, PathAnimActivity.class);
+                        break;
+                    case 5:
+                        intent = new Intent(MainActivity.this, BezierActivity.class);
+                        break;
+                    case 6:
+                        intent = new Intent(MainActivity.this, GameOneActivity.class);
                         break;
                 }
                 startActivity(intent);

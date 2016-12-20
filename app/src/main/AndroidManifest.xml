@@ -21,7 +21,9 @@
         <activity android:name=".basic.paint.PaintExerciseActivity" />
         <activity android:name=".basic.path.PathEcerciseActivity" />
         <activity android:name=".basic.shader.ShaderExercixeActivity" />
-        <activity android:name=".basic.animpath.PathAnimActivity"></activity>
+        <activity android:name=".basic.animpath.PathAnimActivity" />
+        <activity android:name=".basic.bezierPath.BezierActivity" />
+        <activity android:name=".basic.GameOne.GameOneActivity"></activity>
     </application>
 
 </manifest>

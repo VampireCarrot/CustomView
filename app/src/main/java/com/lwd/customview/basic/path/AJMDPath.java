@@ -15,7 +15,7 @@ import android.view.View;
  * User: LWD
  * Date: 2016/12/19
  * Email: 13102169005@163.com
- * Description:
+ * Description: 阿基米德曲线
  * 这三个方法都如字面意思一样，非常简单，这里就简单是叙述一下，不再过多讲解。
  * setPath 是 PathMeasure 与 Path 关联的重要方法，效果和 构造函数 中两个参数的作用是一样的。
  * isClosed 用于判断 Path 是否闭合，但是如果你在关联 Path 的时候设置 forceClosed 为 true 的话，这个方法的返回值则一定为true。
