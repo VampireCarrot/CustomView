@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.lwd.customview.Clock.ClockActivity;
+import com.lwd.customview.basic.animpath.PathAnimActivity;
 import com.lwd.customview.basic.paint.PaintExerciseActivity;
 import com.lwd.customview.basic.path.PathEcerciseActivity;
 import com.lwd.customview.basic.shader.ShaderExercixeActivity;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         menuList.add("Path高级用法 ");
         menuList.add("实现时钟效果 ");
         menuList.add("Shader图像渲染 ");
+        menuList.add("Path动态效果 ");
         menuAdapter = new MenuAdapter(this,menuList);
         lvMuenu.setAdapter(menuAdapter);
 
@@ -62,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         intent = new Intent(MainActivity.this, ShaderExercixeActivity.class);
+                        break;
+                    case 4:
+                        intent = new Intent(MainActivity.this, PathAnimActivity.class);
                         break;
                 }
                 startActivity(intent);

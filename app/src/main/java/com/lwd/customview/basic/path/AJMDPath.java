@@ -1,61 +1,34 @@
 package com.lwd.customview.basic.path;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.os.Handler;
-import android.os.Message;
+import android.graphics.PathMeasure;
 import android.util.AttributeSet;
 import android.view.View;
+
 
 /**
  * User: LWD
  * Date: 2016/12/19
  * Email: 13102169005@163.com
  * Description:
+ * 这三个方法都如字面意思一样，非常简单，这里就简单是叙述一下，不再过多讲解。
+ * setPath 是 PathMeasure 与 Path 关联的重要方法，效果和 构造函数 中两个参数的作用是一样的。
+ * isClosed 用于判断 Path 是否闭合，但是如果你在关联 Path 的时候设置 forceClosed 为 true 的话，这个方法的返回值则一定为true。
+ * getLength 用于获取 Path 的总长度，在之前的测试中已经用过了
  */
 
 public class AJMDPath extends View {
+    private  static  final  String TAG = "AJMDPath";
     Path mPath;
     Paint mPaint;
-    private int count = 1;
-
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what){
-                case 0:
-                    AJMDPath.this.invalidate();
-                    break;
-            }
-        }
-    };
+    private float x0,y0;
     public AJMDPath(Context context) {
         super(context);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    count++;
-                    try {
-                        Thread.sleep(500);
-
-                        if(count<=6145){
-                            handler.sendEmptyMessage(0);
-                        }else{
-                            break;
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-        }).start();
-
 
 
     }
@@ -66,6 +39,15 @@ public class AJMDPath extends View {
 
     public AJMDPath(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+
     }
 
     @Override
@@ -76,19 +58,18 @@ public class AJMDPath extends View {
         mPaint.setAntiAlias(true);
         mPaint.setStrokeWidth(4);
         mPaint.setStyle(Paint.Style.STROKE);
-
-        float x0=this.getWidth()/2;
-        float y0=this.getHeight()/2;
-        canvas.drawLine(x0, 0,x0,2*y0,mPaint);
-        canvas.drawLine(0, y0,2*x0,y0,mPaint);
-
-        for (int i=0; i<count; i++){
-            mPath = new Path();
-            mPath.moveTo(x0+(int)Math.round( 0.6*((i-1)*Math.PI/512)*Math.cos((i-1)*Math.PI/512)),
-                    y0+(int)Math.round( 0.6*((i-1)*Math.PI/512)*Math.sin((i-1)*Math.PI/512)));
-            mPath.lineTo(x0+(int)Math.round( 0.6*(i*Math.PI/512)*Math.cos(i*Math.PI/512)),
-                    y0+(int)Math.round( 0.6*(i*Math.PI/512)*Math.sin(i*Math.PI/512)));
+        x0=this.getWidth()/2;
+        y0=this.getHeight()/2;
+        mPath = new Path();
+        mPath.moveTo(x0,y0);
+        for (int i=0; i<6145; i++){
+            double angle = i*Math.PI/512;
+            double radius = 0.3*angle;
+            int x=(int)Math.round(radius*angle*Math.cos(angle));
+            int y=(int)Math.round(radius*angle*Math.sin(angle));
+            mPath.lineTo(x0+x,y0+y);
         }
-        canvas.drawPath(mPath,mPaint);
+        canvas.drawPath(mPath, mPaint);
+
     }
 }

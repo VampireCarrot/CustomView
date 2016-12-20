@@ -20,7 +20,8 @@
         <activity android:name=".Clock.ClockActivity" />
         <activity android:name=".basic.paint.PaintExerciseActivity" />
         <activity android:name=".basic.path.PathEcerciseActivity" />
-        <activity android:name=".basic.shader.ShaderExercixeActivity"></activity>
+        <activity android:name=".basic.shader.ShaderExercixeActivity" />
+        <activity android:name=".basic.animpath.PathAnimActivity"></activity>
     </application>
 
 </manifest>
