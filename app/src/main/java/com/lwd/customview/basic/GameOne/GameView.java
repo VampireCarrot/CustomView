@@ -8,10 +8,17 @@ import android.graphics.Paint.Style;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.Point;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.lwd.customview.utils.LogUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.graphics.Paint.Style.FILL;
 import static android.graphics.Paint.Style.STROKE;
@@ -27,16 +34,15 @@ public class GameView extends View {
     private static String TAG  = "Game————》";
 
     /**
-     * 定义旋转的速度(由高到低)
+     * 定义旋转的速度(由高到低) 1秒钟下落10像素
+     *                       1秒钟下落20像素
+     *                       。
+     *                       。
      */
-    enum SPEED {
-        LEVEL1,
-        LEVEL2,
-        LEVEL3,
-        LEVEL4,
-        LEVEL5
-    }
-
+    private static final  int SPEED1 = 1;
+    private static final  int SPEED2 = 2;
+    private static final  int SPEED3 = 3;
+    private int CurrentSpeed  = 1;
     //定义障碍物的画笔
     private Paint paint_obst;
     //定义画笔
@@ -59,6 +65,35 @@ public class GameView extends View {
     private int Ball_R;
     private int Width;
     private int height;
+    private int count = 180;
+    private List<RectModl> RectList;
+
+    private float CurrontPosition = 0f;
+    public Handler mHandler=new Handler()
+    {
+        public void handleMessage(Message msg)
+        {
+            switch(msg.what)
+            {
+                case 1:
+
+                    Point startPoint = new Point(0,0);
+                    RectModl rect = new RectModl(startPoint,RandomRect.getRandomRect());
+                    RectList.add(rect);
+                    invalidate();
+                    LogUtil.d(TAG+"已经存在障碍物：",RectList.size());
+                    break;
+                case 2:
+                    CurrontPosition+=25.0;
+                    invalidate();
+                    break;
+                default:
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
 
     public GameView(Context context) {
         this(context,null);
@@ -73,6 +108,10 @@ public class GameView extends View {
         this.context = context;
         //初始化工具
         initialize();
+        RectList = new ArrayList<>();
+        new Thread(new CrateRandomRect()).start();
+        new Thread(new RectThred()).start();
+
     }
 
     private void initialize() {
@@ -82,7 +121,7 @@ public class GameView extends View {
         paint_obst = new Paint();
         paint_obst.setDither(true);
         paint_obst.setStyle(Style.FILL);
-        paint_obst.setColor(Color.BLACK);
+        paint_obst.setColor(Color.parseColor("#3366cc"));
         paint_obst.setAntiAlias(true);
 
         /**
@@ -97,12 +136,7 @@ public class GameView extends View {
         lPoint = new Point();
         mPoint = new Point();
         rPoint = new Point();
-
-
-
-
     }
-
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -111,22 +145,16 @@ public class GameView extends View {
         height = getMeasuredHeight();
 
 
-        LogUtil.d(TAG+"Width",Width);
-        LogUtil.d(TAG+"height",height);
         lPoint.x = (int) (Width*0.33);
         lPoint.y = (int) (height-(Width*0.33));
 
-        LogUtil.d(TAG+"lPoint.x",lPoint.x);
-        LogUtil.d(TAG+"lPoint.y",lPoint.y);
 
         mPoint.x =(int) (Width*0.5);
         mPoint.y =(int) (height-(Width*0.33));
-        LogUtil.d(TAG+"mPoint.x",mPoint.x);
-        LogUtil.d(TAG+"mPoint.y",mPoint.y);
+
         rPoint.x =(int) (Width*0.66);
         rPoint.y = (int) (height-(Width*0.33));
-        LogUtil.d(TAG+"rPoint.x",rPoint.x);
-        LogUtil.d(TAG+"rPoint.y",rPoint.y);
+
         Ball_r = (float) (40);
         Ball_R = (rPoint.x-lPoint.x)/2;
         setMeasuredDimension(Width,height);
@@ -138,28 +166,99 @@ public class GameView extends View {
         super.onDraw(canvas);
 
 
-        Path mPath = new Path();
-        mPath.moveTo(rPoint.x,rPoint.y);
+        path_orbit = new Path();
+        path_orbit.moveTo(mPoint.x+Ball_r,mPoint.y);
         for (int i = 0; i < 361; i += 1) {
             int x = (int) (mPoint.x- Ball_R* Math.sin(Math.PI * (i - 90) / 180));
             int y = (int) (mPoint.y - +Ball_R * Math.cos(Math.PI * (i - 90) / 180));
-            mPath.lineTo(x,y);
+            path_orbit.lineTo(x,y);
         }
+        path_orbit.close();
         paint_orbit.reset();
         paint_orbit.setColor(Color.GRAY);
         paint_orbit.setStyle(STROKE);
-        canvas.drawPath(mPath,paint_orbit);
+        canvas.drawPath(path_orbit,paint_orbit);
+
+
 
         //绘制左边圆
-        paint_orbit.reset();
-        paint_orbit.setColor(Color.BLACK);
-        canvas.drawCircle(lPoint.x,lPoint.y,Ball_r, paint_orbit);
+        paint_obst.reset();
+        paint_obst.setColor(Color.BLACK);
+        canvas.drawCircle(lPoint.x,lPoint.y,Ball_r, paint_obst);
         //绘制右边圆
-        paint_orbit.reset();
-        paint_orbit.setColor(Color.RED);
-        canvas.drawCircle(rPoint.x,rPoint.y,Ball_r, paint_orbit);
+        paint_obst.reset();
+        paint_obst.setColor(Color.RED);
+        canvas.drawCircle(rPoint.x,rPoint.y,Ball_r, paint_obst);
 
-
+        /**
+         * 绘制障碍物
+         */
+        if(RectList.size()>0){
+            for(int i = 0;i<RectList.size();i++){
+                RectModl rectM = RectList.get(i);
+                canvas.drawRect(
+                        rectM.getStartPoint().x,
+                        rectM.getStartPoint().y+i*CurrontPosition,
+                        rectM.getEndPoint().x,
+                        rectM.getEndPoint().y+CurrontPosition,
+                        paint_obst);
+            }
+        }
 
     }
+
+    class  CrateRandomRect implements Runnable{
+
+        @Override
+        public void run() {
+            while (true){
+                try {
+                    Thread.sleep(5000);
+                    mHandler.sendEmptyMessage(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    class  RectThred implements Runnable{
+
+        @Override
+        public void run() {
+            while (true){
+                try {
+                    Thread.sleep(1000);
+                    mHandler.sendEmptyMessage(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            float x = event.getX();
+
+            if(x>Width/2){
+                count +=3;
+                lPoint.x = (int) (mPoint.x- Ball_R* Math.sin(Math.PI * (count - 90) / 180));
+                lPoint.y = (int) (mPoint.y - +Ball_R * Math.cos(Math.PI * (count - 90) / 180));
+                rPoint.x = (int) (mPoint.x- Ball_R* Math.sin(Math.PI * (count + 90) / 180));
+                rPoint.y = (int) (mPoint.y - +Ball_R * Math.cos(Math.PI * (count + 90) / 180));
+            }else{
+                count-=3;
+                lPoint.x = (int) (mPoint.x- Ball_R* Math.sin(Math.PI * (count - 90) / 180));
+                lPoint.y = (int) (mPoint.y - +Ball_R * Math.cos(Math.PI * (count - 90) / 180));
+                rPoint.x = (int) (mPoint.x- Ball_R* Math.sin(Math.PI * (count + 90) / 180));
+                rPoint.y = (int) (mPoint.y - +Ball_R * Math.cos(Math.PI * (count + 90) / 180));
+            }
+
+            invalidate();
+        }
+        return super.onTouchEvent(event);
+    }
+
 }
