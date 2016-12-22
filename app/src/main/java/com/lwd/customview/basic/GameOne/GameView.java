@@ -32,13 +32,7 @@ import static android.graphics.Paint.Style.STROKE;
 
 public class GameView extends View {
     private static String TAG  = "Game————》";
-
-    /**
-     * 定义旋转的速度(由高到低) 1秒钟下落10像素
-     *                       1秒钟下落20像素
-     *                       。
-     *                       。
-     */
+    //定义速度
     private static final  int SPEED1 = 1;
     private static final  int SPEED2 = 2;
     private static final  int SPEED3 = 3;
@@ -50,7 +44,8 @@ public class GameView extends View {
     //定义轨迹的路径
     private Path path_orbit;
     private PathMeasure pathMeasure;
-
+    //
+    private boolean isRun = true;
     //上下文
     private Context context;
 
@@ -198,9 +193,9 @@ public class GameView extends View {
                 RectModl rectM = RectList.get(i);
                 canvas.drawRect(
                         rectM.getStartPoint().x,
-                        rectM.getStartPoint().y+i*CurrontPosition,
+                        rectM.getStartPoint().y,
                         rectM.getEndPoint().x,
-                        rectM.getEndPoint().y+CurrontPosition,
+                        rectM.getEndPoint().y,
                         paint_obst);
             }
         }

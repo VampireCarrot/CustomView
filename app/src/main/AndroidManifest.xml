@@ -23,7 +23,8 @@
         <activity android:name=".basic.shader.ShaderExercixeActivity" />
         <activity android:name=".basic.animpath.PathAnimActivity" />
         <activity android:name=".basic.bezierPath.BezierActivity" />
-        <activity android:name=".basic.GameOne.GameOneActivity"></activity>
+        <activity android:name=".basic.GameOne.GameOneActivity" />
+        <activity android:name=".basic.GameTwo.TetrisActivity"/>
     </application>
 
 </manifest>
