@@ -17,14 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Clock.ClockActivity" />
+        <activity android:name=".basic.Clock.ClockActivity" />
         <activity android:name=".basic.paint.PaintExerciseActivity" />
         <activity android:name=".basic.path.PathEcerciseActivity" />
         <activity android:name=".basic.shader.ShaderExercixeActivity" />
         <activity android:name=".basic.animpath.PathAnimActivity" />
         <activity android:name=".basic.bezierPath.BezierActivity" />
         <activity android:name=".basic.GameOne.GameOneActivity" />
-        <activity android:name=".basic.GameTwo.TetrisActivity"/>
+        <activity android:name=".basic.GameTwo.TetrisActivity" />
+        <activity android:name=".basic.CurtainView.CurtainActivity"></activity>
     </application>
 
 </manifest>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.lwd.customview.Clock.ClockVIew
+    <com.lwd.customview.basic.Clock.ClockVIew
         android:id="@+id/ck_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

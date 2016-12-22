@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:test= "http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_curtain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.lwd.customview.basic.CurtainView.CurtainActivity">
+    <com.lwd.customview.basic.CurtainView.CurtainView
+        android:id="@+id/curtain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        test:CutBg="@drawable/demo"
+        />
+    <SeekBar
+        android:id="@+id/pb_my"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        />
+</RelativeLayout>

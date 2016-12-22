@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.lwd.customview.Clock.ClockActivity;
+import com.lwd.customview.basic.Clock.ClockActivity;
+import com.lwd.customview.basic.CurtainView.CurtainActivity;
 import com.lwd.customview.basic.GameOne.GameOneActivity;
 import com.lwd.customview.basic.GameTwo.TetrisActivity;
 import com.lwd.customview.basic.animpath.PathAnimActivity;
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         menuList.add("贝塞尔曲线效果 ");
         menuList.add("用View绘制的小游戏 ");
         menuList.add("俄罗斯方块小游戏 ");
+        menuList.add("仿床帘闭合效果 ");
+
         menuAdapter = new MenuAdapter(this,menuList);
         lvMuenu.setAdapter(menuAdapter);
 
@@ -82,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 7:
                         intent = new Intent(MainActivity.this, TetrisActivity.class);
+                        break;
+                    case 8:
+                        intent = new Intent(MainActivity.this, CurtainActivity.class);
                         break;
                 }
                 startActivity(intent);

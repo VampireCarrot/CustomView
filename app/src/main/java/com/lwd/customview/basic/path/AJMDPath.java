@@ -1,14 +1,13 @@
 package com.lwd.customview.basic.path;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PathMeasure;
 import android.util.AttributeSet;
 import android.view.View;
+
 
 
 /**
@@ -27,6 +26,8 @@ public class AJMDPath extends View {
     Path mPath;
     Paint mPaint;
     private float x0,y0;
+
+
     public AJMDPath(Context context) {
         super(context);
 
@@ -39,8 +40,6 @@ public class AJMDPath extends View {
 
     public AJMDPath(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-
     }
 
     @Override

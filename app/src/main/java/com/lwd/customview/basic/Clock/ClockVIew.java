@@ -1,4 +1,4 @@
-package com.lwd.customview.Clock;
+package com.lwd.customview.basic.Clock;
 
 import android.content.Context;
 import android.graphics.Canvas;

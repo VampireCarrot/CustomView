@@ -1,4 +1,4 @@
-package com.lwd.customview.Clock;
+package com.lwd.customview.basic.Clock;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
