@@ -3,4 +3,8 @@
     <declare-styleable name="CurtainView">
         <attr name="CutBg" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="Curtain">
+        <attr name="leftsrc" format="reference"/>
+        <attr name="rightsrc" format="reference"/>
+    </declare-styleable>
 </resources>

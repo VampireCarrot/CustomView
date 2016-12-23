@@ -25,7 +25,7 @@
         <activity android:name=".basic.bezierPath.BezierActivity" />
         <activity android:name=".basic.GameOne.GameOneActivity" />
         <activity android:name=".basic.GameTwo.TetrisActivity" />
-        <activity android:name=".basic.CurtainView.CurtainActivity"></activity>
+        <activity android:name=".basic.CurtainView.CurtainActivity" />
     </application>
 
 </manifest>
