@@ -1,0 +1,13 @@
+{
+"menuleft":[
+{"_id":1,"_name":"第一个"},
+{"_id":2,"_name":"第二个"},
+{"_id":3,"_name":"第三个"}
+],
+"menuright":[
+{"_id":1,"_name":"第一个","_CurrentNum":0,"_TotalNum":100},
+{"_id":2,"_name":"第二个","_CurrentNum":0,"_TotalNum":100},
+{"_id":3,"_name":"第三个","_CurrentNum":0,"_TotalNum":100}
+]
+
+}

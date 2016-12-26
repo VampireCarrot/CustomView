@@ -11,6 +11,7 @@ import com.lwd.customview.basic.Clock.ClockActivity;
 import com.lwd.customview.basic.CurtainView.CurtainActivity;
 import com.lwd.customview.basic.GameOne.GameOneActivity;
 import com.lwd.customview.basic.GameTwo.TetrisActivity;
+import com.lwd.customview.basic.SqLite.SqLiteActivity;
 import com.lwd.customview.basic.animpath.PathAnimActivity;
 import com.lwd.customview.basic.bezierPath.BezierActivity;
 import com.lwd.customview.basic.paint.PaintExerciseActivity;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         menuList.add("用View绘制的小游戏 ");
         menuList.add("俄罗斯方块小游戏 ");
         menuList.add("仿床帘闭合效果 ");
-        menuList.add("仿窗户闭合效果 ");
+        menuList.add("SqLite使用");
 
         menuAdapter = new MenuAdapter(this,menuList);
         lvMuenu.setAdapter(menuAdapter);
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         intent = new Intent(MainActivity.this, CurtainActivity.class);
                         break;
                     case 9:
+                        intent = new Intent(MainActivity.this, SqLiteActivity.class);
                         break;
                 }
                 startActivity(intent);
