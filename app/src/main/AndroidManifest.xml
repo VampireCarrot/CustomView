@@ -3,7 +3,8 @@
     package="com.lwd.customview">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,7 +27,9 @@
         <activity android:name=".basic.GameOne.GameOneActivity" />
         <activity android:name=".basic.GameTwo.TetrisActivity" />
         <activity android:name=".basic.CurtainView.CurtainActivity" />
-        <activity android:name=".basic.SqLite.SqLiteActivity"></activity>
+        <activity android:name=".basic.SqLite.SqLiteActivity" />
+        <activity android:name=".basic.baseAnim.BaseAnimActivity" />
+        <activity android:name=".basic.baseAnim.InterpolatorAnimActivity"></activity>
     </application>
 
 </manifest>

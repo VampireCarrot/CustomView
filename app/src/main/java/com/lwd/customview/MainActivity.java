@@ -13,6 +13,8 @@ import com.lwd.customview.basic.GameOne.GameOneActivity;
 import com.lwd.customview.basic.GameTwo.TetrisActivity;
 import com.lwd.customview.basic.SqLite.SqLiteActivity;
 import com.lwd.customview.basic.animpath.PathAnimActivity;
+import com.lwd.customview.basic.baseAnim.BaseAnimActivity;
+import com.lwd.customview.basic.baseAnim.InterpolatorAnimActivity;
 import com.lwd.customview.basic.bezierPath.BezierActivity;
 import com.lwd.customview.basic.paint.PaintExerciseActivity;
 import com.lwd.customview.basic.path.PathEcerciseActivity;
@@ -55,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         menuList.add("俄罗斯方块小游戏 ");
         menuList.add("仿床帘闭合效果 ");
         menuList.add("SqLite使用");
+        menuList.add("自定义控件三部曲之动画篇（一）——alpha、scale、translate、rotate、set的xml属性及用法");
+        menuList.add("自定义控件三部曲之动画篇（二）——Interpolator插值器");
+
 
         menuAdapter = new MenuAdapter(this,menuList);
         lvMuenu.setAdapter(menuAdapter);
@@ -93,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 9:
                         intent = new Intent(MainActivity.this, SqLiteActivity.class);
+                        break;
+                    case 10:
+                        intent = new Intent(MainActivity.this, BaseAnimActivity.class);
+                        break;
+                    case 11:
+                        intent = new Intent(MainActivity.this, InterpolatorAnimActivity.class);
                         break;
                 }
                 startActivity(intent);

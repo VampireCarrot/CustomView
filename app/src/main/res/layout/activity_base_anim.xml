@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_base_anim"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lwd.customview.basic.baseAnim.BaseAnimActivity">
+<LinearLayout
+    android:id="@+id/ll_menu"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/btn_alpha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="alpha"/>
+    <Button
+        android:id="@+id/btn_scale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="scale"/>
+    <Button
+        android:id="@+id/btn_rotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rotate"/>
+    <Button
+        android:id="@+id/trans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="trans"/>
+    <Button
+        android:id="@+id/bnt_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set"/>
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/iv_view"
+        android:layout_width="150dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:background="#666e"
+        android:layout_gravity="center"
+        android:text="helloword"/>
+
+
+</RelativeLayout>
