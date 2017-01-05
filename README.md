@@ -2,7 +2,7 @@
 从零起步，从入门到懵逼的自定义View教程。
 
 #基础篇
-<a href="">
+<a href="https://github.com/VampireCarrot/CustomView/blob/master/README_01.md">
 <img src="https://github.com/VampireCarrot/CustomView/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher.png"></img>
 </a>
 
