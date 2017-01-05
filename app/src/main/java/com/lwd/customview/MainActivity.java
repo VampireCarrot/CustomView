@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         menuList.add("SqLite使用");
         menuList.add("自定义控件三部曲之动画篇（一）——alpha、scale、translate、rotate、set的xml属性及用法");
         menuList.add("自定义控件三部曲之动画篇（二）——Interpolator插值器");
+        menuList.add("自定义控件三部曲之动画篇（三）——代码生成alpha、scale、translate、rotate、set及插值器动画 ");
 
 
         menuAdapter = new MenuAdapter(this,menuList);
@@ -103,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
                         intent = new Intent(MainActivity.this, BaseAnimActivity.class);
                         break;
                     case 11:
+                        intent = new Intent(MainActivity.this, InterpolatorAnimActivity.class);
+                        break;
+                    case 12:
                         intent = new Intent(MainActivity.this, InterpolatorAnimActivity.class);
                         break;
                 }
