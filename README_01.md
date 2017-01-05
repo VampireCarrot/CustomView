@@ -3,7 +3,7 @@
 
 #基础篇
 <a href="https://github.com/VampireCarrot/CustomView/blob/master/README.md">
-<img src="https://github.com/VampireCarrot/CustomView/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher.png"></img>
+<img width="285" style = "max-width:100%;" src="https://github.com/VampireCarrot/CustomView/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher.png"></img>
 </a>
 
 
